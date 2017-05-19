@@ -13,16 +13,10 @@ body {
 	align-items: center;
 }
 
-.panes.black
+.panes:nth-of-type(odd)
 {
 	background-color: black;
 	color: white;
-}
-
-.panes.white 
-{
-	text-align: right;
-	justify-content: flex-end;
 }
 
 .panes.black a
