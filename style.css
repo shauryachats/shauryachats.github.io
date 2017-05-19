@@ -1,0 +1,41 @@
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+.panes
+{
+	margin: -1%;
+	padding: 2%;
+	display: flex;
+	width: 95vw;
+	height: 101vh;
+	font-size: 5em;
+	align-items: center;
+}
+
+.panes.black
+{
+	background-color: black;
+	color: white;
+}
+
+.panes.white 
+{
+	text-align: right;
+	justify-content: flex-end;
+}
+
+.panes.black a
+{
+	color: white;
+	/** self decorating the links*/
+	text-decoration: none;
+	border-bottom: 2px solid white;
+}
+
+.panes.white a
+{
+	color: black;
+	text-decoration: none;
+	border-bottom: 2px solid black;
+}
