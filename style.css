@@ -16,7 +16,14 @@ body {
 .panes:nth-of-type(odd)
 {
 	background-color: black;
+	height: 100vh;
 	color: white;
+}
+
+.panes:nth-of-type(even)
+{
+	background-color: white;
+	height: 105vh;
 }
 
 .panes.black a
@@ -24,12 +31,34 @@ body {
 	color: white;
 	/** self decorating the links*/
 	text-decoration: none;
-	border-bottom: 2px solid white;
 }
 
 .panes.white a
 {
 	color: black;
 	text-decoration: none;
-	border-bottom: 2px solid black;
+}
+
+/** Manipulating up and down buttons. */
+
+.nav
+{
+	position: fixed;
+	width: 0px;
+	height: 0px;
+	left: 50%;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+}
+
+#down 
+{
+	bottom: 1%;
+	border-top: 20px #aaa solid;
+}
+
+#up
+{
+	top: 1%;
+	border-bottom: 20px #aaa solid;
 }
