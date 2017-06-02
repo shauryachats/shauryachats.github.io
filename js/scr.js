@@ -37,6 +37,11 @@ $(document).keydown(function(e) {
 });
 
 //for mobile browsers
-$(document).on('swipe', function(event) {
-	console.log(event);
+$('html, body').swipe({
+	swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+		if (direction == 'down')
+			paneup();
+		else if (direction == 'up')
+			panedown();
+	}
 });
