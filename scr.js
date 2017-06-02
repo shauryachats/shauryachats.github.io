@@ -3,44 +3,32 @@ var paneindex = 0
 $(document).ready(function() {
 
 	$(document).keydown(function(e) {
-		switch(e.keyCode)
+		if (e.keyCode == 38)
 		{
-			case 38: 
-				if (paneindex > 0)
-					--paneindex;
-				animatepanes();
-				break;
-			case 40:
+			if (paneindex > 0)
+			{
+				--paneindex;
+				animatepanes($('.panes')[paneindex]);
+			}
+			e.preventDefault();
+		} 
+		else if (e.keyCode == 40)
+		{
+			if (paneindex < $('.panes').length-1)
+			{
 				++paneindex;
-				animatepanes();
-				break;
-		}
-	});
-
-	window.addEventListener("keydown", function(e) {
-		if ([38, 40].indexOf(e.keyCode) > -1)
-		{
+				animatepanes($('.panes')[paneindex]);
+			}
 			e.preventDefault();
 		}
-	}, false);
-
-	$('#down').click(function() {
-		console.log("hi");
-		paneindex++;
-		animatepanes(paneindex);
-	});
-
-	$('#up').click(function() {
-		console.log("hi");
-		if (paneindex > 0)
-			--paneindex;
-		animatepanes(paneindex);	
+		console.log(paneindex);
 	});
 
 });
 
-animatepanes = function(paneindex) {
+animatepanes = function(obj) {
+	console.log(obj);
 	$('html, body').animate({
-		scrollTop: $('.panes')[paneindex].offsetTop
+		scrollTop: obj.offsetTop
 	}, 1000, 'swing');
 }

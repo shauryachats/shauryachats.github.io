@@ -13,6 +13,11 @@ body {
 	align-items: center;
 }
 
+.panes sub
+{
+	font-size: 0.4em;
+}
+
 .panes:nth-of-type(odd)
 {
 	background-color: black;
