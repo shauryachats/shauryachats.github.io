@@ -36,6 +36,11 @@ $(document).keydown(function(e) {
 	console.log(paneindex);
 });
 
+//makes the page on top after every refresh
+$(window).on('beforeunload', function(){
+  $(window).scrollTop(0);
+});
+
 //for mobile browsers
 $('html, body').swipe({
 	swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
