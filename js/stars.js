@@ -68,7 +68,6 @@ var render = function() {
 }
 
 var runStarAnim = function() {
-	console.log("hi");
 	canvas = document.getElementById('canva');
 	canvas.width = WINDOW_WIDTH;
 	canvas.height = WINDOW_HEIGHT;
