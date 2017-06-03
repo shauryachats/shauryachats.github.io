@@ -1,50 +1,83 @@
-NUMBER_OF_STARS = 75
+NUMBER_OF_STARS = 200
+MAX_RADIUS = 4
 
 WINDOW_WIDTH = $(window).width();
 WINDOW_HEIGHT = $(window).height();
 
-createStar = function(top, left, far)
-{
-	var obj = $('<div>').attr({
-		'class' : 'stars'
-	}).appendTo('.panes:eq(1)');
+canvas = null
+context = null
 
-	obj.css('top', top);
-	obj.css('left', left);
-	obj.css('height', far);
-	obj.css('width', far);
+stars = []
+
+xrandom = function() {
+	return Math.floor(canvas.width * Math.random());
 }
 
-randomLeft = function() {
-	return Math.floor(WINDOW_WIDTH * Math.random());
+yrandom = function() {
+	return Math.floor(canvas.height * Math.random());
 }
 
-randomTop = function() {
-	return Math.floor(WINDOW_HEIGHT * Math.random());
+radrandom = function() {
+	return Math.floor(MAX_RADIUS * Math.random()) + 1;
 }
 
-randomFar = function() {
-	return Math.floor(10 * Math.random());
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+
+function Star() {
+	this.x = xrandom();
+	this.y = yrandom();
+	this.radius = radrandom();
 }
 
-function runStarAnimation()
-{
+
+var render = function() {
+
+	//Clear canvas
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
+	//Paint the background black
+	context.fillStyle = 'black';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	//Update the position of the stars.
 	for (var i = 0; i < NUMBER_OF_STARS; ++i)
-		createStar(randomTop(), randomLeft(), randomFar());
-
-	//animate the stars!
-	$('.stars').each(function setAnim() {
-		//console.log($(this).position().top);
-		if ($(this).position().top < 0)
+	{
+		stars[i].y -= stars[i].radius;
+		if (stars[i].y < 0)
 		{
-			$(this).css('top', WINDOW_HEIGHT);
-			$(this).css('left', randomLeft());
+			stars[i].y = canvas.height;
+			stars[i].x = xrandom();
+			stars[i].radius = radrandom();
 		}
-		var speed = 2*$(this).width();
-		$(this).animate({
-			top: "-=" + speed
-		},100, 'linear', setAnim);
-	});
+	}
+
+	//Draw the stars
+	for (var i = 0; i < NUMBER_OF_STARS; ++i)
+	{
+		context.beginPath();
+		context.arc(stars[i].x, stars[i].y, stars[i].radius, 0, 2*Math.PI);
+		context.fillStyle = 'white';
+		context.fill();
+		context.stroke();		
+	}
+
+	requestAnimationFrame(render);
 }
 
-$(document).ready(runStarAnimation);
+var runStarAnim = function() {
+	console.log("hi");
+	canvas = document.getElementById('canva');
+	canvas.width = WINDOW_WIDTH;
+	canvas.height = WINDOW_HEIGHT;
+	context = canvas.getContext('2d');
+
+	for (var i = 0; i < NUMBER_OF_STARS; ++i)
+		stars.push(new Star());
+
+	render();
+}
+
+$(document).ready(runStarAnim);
