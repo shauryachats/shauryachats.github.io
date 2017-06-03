@@ -50,3 +50,5 @@ $('html, body').swipe({
 			panedown();
 	}
 });
+
+//run stars animation on the first pane.
