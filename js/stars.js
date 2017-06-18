@@ -110,13 +110,15 @@ var runStarAnim = function() {
 	animID = requestAnimationFrame(render);
 }
 
-window.onkeydown = function(e) {
-	var isVisible = $('canvas').isInViewport();
+isVisible = null
 
-	if (isVisible)
-		resumeStars();
-	else
-		pauseStars();
+window.onkeydown = function(e) {
+	window.setTimeout(function() {
+		if ($('canvas').isInViewport())
+			resumeStars();
+		else
+			pauseStars();
+	}, 1000);
 }
 
 $(document).ready(runStarAnim);
