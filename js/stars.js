@@ -12,6 +12,16 @@ isPaused = false
 
 stars = []
 
+$.fn.isInViewport = function() {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
 xrandom = function() {
 	return Math.floor(canvas.width * Math.random());
 }
@@ -41,6 +51,8 @@ function Star() {
 
 
 var render = function() {
+
+	console.log("star running");
 
 	//Clear canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
@@ -96,6 +108,15 @@ var runStarAnim = function() {
 		stars.push(new Star());
 
 	animID = requestAnimationFrame(render);
+}
+
+window.onkeydown = function(e) {
+	var isVisible = $('canvas').isInViewport();
+
+	if (isVisible)
+		resumeStars();
+	else
+		pauseStars();
 }
 
 $(document).ready(runStarAnim);
