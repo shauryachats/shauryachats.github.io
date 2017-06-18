@@ -39,26 +39,10 @@ body {
 	text-decoration: none;
 }
 
-/** Manipulating up and down buttons. */
-
-.nav
-{
-	position: fixed;
-	width: 0px;
-	height: 0px;
-	left: 50%;
-	border-left: 15px solid transparent;
-	border-right: 15px solid transparent;
-}
-
-#down 
-{
-	bottom: 1%;
-	border-top: 20px #aaa solid;
-}
-
-#up
-{
-	top: 1%;
-	border-bottom: 20px #aaa solid;
+.dots {
+	position: absolute;
+	height: 14px;
+	width: 14px;
+	background-color: black;
+	border-radius: 100%;
 }

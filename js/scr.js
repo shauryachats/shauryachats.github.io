@@ -51,4 +51,3 @@ $('html, body').swipe({
 	}
 });
 
-//run stars animation on the first pane.
