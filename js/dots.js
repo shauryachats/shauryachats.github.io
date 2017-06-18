@@ -18,7 +18,6 @@ animate = function() {
 	$('.dots').each(function(i) {
 		$(this).animate({
 			left : centerX + radius*Math.cos(angle[i]),
-			//top : centerY + radius*Math.sin(angle[i])
 		}, 1, 'swing');
 	});
 

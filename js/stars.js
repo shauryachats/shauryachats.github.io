@@ -6,6 +6,9 @@ WINDOW_HEIGHT = $(window).height();
 
 canvas = null
 context = null
+animID = null
+
+isPaused = false
 
 stars = []
 
@@ -25,6 +28,10 @@ var requestAnimationFrame = window.requestAnimationFrame ||
                             window.mozRequestAnimationFrame || 
                             window.webkitRequestAnimationFrame || 
                             window.msRequestAnimationFrame;
+
+// to cancel the animation when user is not looking.
+var cancelAnimationFrame =  window.cancelAnimationFrame || 
+							window.mozCancelAnimationFrame;
 
 function Star() {
 	this.x = xrandom();
@@ -64,7 +71,19 @@ var render = function() {
 		context.stroke();		
 	}
 
-	requestAnimationFrame(render);
+	animID = requestAnimationFrame(render);
+}
+
+pauseStars = function() {
+	if (isPaused == false)
+		cancelAnimationFrame(animID);
+	isPaused = true;
+}
+
+resumeStars = function() {
+	if (isPaused == true)
+		animID = requestAnimationFrame(render);
+	isPaused = false;
 }
 
 var runStarAnim = function() {
@@ -76,7 +95,7 @@ var runStarAnim = function() {
 	for (var i = 0; i < NUMBER_OF_STARS; ++i)
 		stars.push(new Star());
 
-	render();
+	animID = requestAnimationFrame(render);
 }
 
 $(document).ready(runStarAnim);
