@@ -1,0 +1,66 @@
+html, body
+{
+	background-color: black;
+	color: white;
+	font-size: 30px;
+	font-family: 'Ubuntu';
+	height: 100%;
+	margin: 0;
+}
+
+.main
+{
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+
+.wrapper 
+{
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+}
+
+p
+{
+	text-align: center;
+	margin: 5px;
+}
+
+#hi 
+{
+	font-size: 70px;
+	margin: 0;
+}
+
+#me
+{
+	font-size: 50px;
+	margin: 0;
+}
+
+#bounce 
+{
+	height: 35%;
+}
+
+hr
+{
+	color: white;
+}
+
+#ball
+{
+	position: absolute;
+	background-color: white;
+	height: 20px;
+	width: 20px;
+	border-radius: 100%;
+}
+
+a
+{
+	text-decoration-color: white;
+	text
+}
